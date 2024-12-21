@@ -15,3 +15,4 @@ int scoreOfString(string s)
   }
   return ans;
 }
+int main(){}
