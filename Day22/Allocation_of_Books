@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int findPages(vector<int> &arr, int n, int m)
+{
+  if (m > n)
+  {
+    return -1;
+  }
+  int store = m;
+  int low = *max_element(arr.begin(), arr.end());
+  int high = accumulate(arr.begin(), arr.end(), 0);
+  while (low <= high)
+  {
+    m = store;
+    int mid = low + (high - low) / 2;
+    long long pages = 0;
+    for (int i = 0; i < n; i++)
+    {
+      pages += arr[i];
+      if (pages > mid)
+      {
+        pages = arr[i];
+        m--;
+      }
+    }
+    if(pages)
+    m--;
+    // cout<<mid <<" "<<m<<"\n";
+    if (m >= 0)
+    {
+      high = mid - 1;
+    }
+    else
+    {
+      low = mid + 1;
+    }
+  }
+  return low;
+}
